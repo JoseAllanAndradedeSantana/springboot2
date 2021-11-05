@@ -53,10 +53,8 @@ public class AnimeService {
 
     public void replace(AnimePutRequestBody animePutRequestBody) {
         Anime savedAnime = findByIdOrThrowBadRequestException(animePutRequestBody.getId());
-        Anime anime = Anime.builder()
-                .id(animePutRequestBody.getId())
-                .name(animePutRequestBody
-                        .getName()).build();
+        Anime anime =
+                Anime.builder().id(animePutRequestBody.getId()).name(animePutRequestBody.getName()).build();
         animeRepository.save(anime);
     }
 }
