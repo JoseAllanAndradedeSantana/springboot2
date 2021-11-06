@@ -20,6 +20,7 @@ class AnimeRepositoryTest {
         Anime animeToBeSaved = createAnime();
         Anime animeSaved = this.animeRepository.save(animeToBeSaved);
         Assertions.assertThat(animeSaved).isNotNull();
+        Assertions.assertThat(animeSaved).isNotNull();
         Assertions.assertThat(animeSaved.getId()).isNotNull();
         Assertions.assertThat(animeSaved.getName()).isEqualTo(animeSaved.getName());
 
