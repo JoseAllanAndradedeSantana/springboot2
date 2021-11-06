@@ -57,7 +57,7 @@ class AnimeRepositoryTest {
 
         Optional<Anime> animeOptional = this.animeRepository.findById(saved.getId());
 
-        Assertions.assertThat(animeOptional.isEmpty()).isTrue();
+        Assertions.assertThat(animeOptional.isEmpty());
 
 
 
