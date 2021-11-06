@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
 @DataJpaTest
 @DisplayName("Test for Anime Repository")
@@ -42,6 +44,22 @@ class AnimeRepositoryTest {
         Assertions.assertThat(animeUpdate).isNotNull();
         Assertions.assertThat(animeUpdate.getId()).isNotNull();
         Assertions.assertThat(animeUpdate.getName()).isEqualTo(animeSaved.getName());
+
+    }
+
+    @Test
+    void delete_RemoveAnime(){
+
+        Anime animeToBeSaved = createAnime();
+        Anime saved = this.animeRepository.save(animeToBeSaved);
+
+        this.animeRepository.delete(saved);
+
+        Optional<Anime> animeOptional = this.animeRepository.findById(saved.getId());
+
+        Assertions.assertThat(animeOptional.isEmpty()).isTrue();
+
+
 
     }
 
