@@ -34,8 +34,9 @@ public class AnimeService {
     }
 
     public Anime findByIdOrThrowBadRequestException(long id) {
-        return animeRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Anime not Found"));
-
+        return animeRepository
+                .findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Anime not Found"));
     }
 
     @Transactional
@@ -53,8 +54,11 @@ public class AnimeService {
 
     public void replace(AnimePutRequestBody animePutRequestBody) {
         Anime savedAnime = findByIdOrThrowBadRequestException(animePutRequestBody.getId());
-        Anime anime =
-                Anime.builder().id(animePutRequestBody.getId()).name(animePutRequestBody.getName()).build();
+        Anime anime = Anime.builder()
+                .id(savedAnime.getId())
+                .name(animePutRequestBody.getName())
+                .build();
+        System.out.println(savedAnime);
         animeRepository.save(anime);
     }
 }
